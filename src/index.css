@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  line-height: 1;
+  height: 100vh;
+  background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  background-repeat: no-repeat;
+}
+
+.header {
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
+  padding-top: 3rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 0.5rem 0.75rem;
+}
+
+.score {
+  background-color: #f2faef;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.score-text {
+  color: hsl(229, 64%, 46%);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.25rem;
+}
+
+.score-value {
+  color: hsl(229, 25%, 31%);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.game-content {
+  border: 2px solid hsl(217, 16%, 45%);
+  margin: 3rem auto;
+  position: relative;
+}
+
+.bg-game {
+  height: 250px;
+}
+
+.btn-round {
+  border-radius: 50%;
+  border: 1.25rem solid;
+  width: 170px;
+  height: 170px;
+  padding: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.btn-paper {
+  border-color: hsl(230, 89%, 62%);
+  /* color: hsl(230, 89%, 65%); */
+  top: 5%;
+  left: 40%;
+}
+
+.border-gradient {
+  border-color: transparent;
+  background-clip: padding-box, border-box;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(90deg, #11998e, #38ef7d);
+  background-origin: border-box;
+}
+
+.btn-scissors {
+  border-color: hsl(39, 89%, 49%);
+  top: 5%;
+  left: 60%;
+}
+
+.btn-rock {
+  border-color: hsl(349, 71%, 52%);
+  top: 85%;
+  left: 50%;
+}
+
+.paper,
+.scissors,
+.rock {
+  width: 100%;
+  height: auto;
+}
+
+.btn-outline {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #fff;
+  padding: 0.5rem 1.75rem;
+  text-transform: uppercase;
+  font-family: inherit;
+  letter-spacing: 3px;
+}
