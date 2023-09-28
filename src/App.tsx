@@ -6,6 +6,7 @@ import rock from "./assets/images/icon-rock.svg";
 import scissors from "./assets/images/icon-scissors.svg";
 import Header from "./components/Header";
 import { generateHouseOutcome } from "./utils/helper";
+import GameButton from "./components/GameButton";
 
 function App() {
   const options = ["rock", "paper", "scissors"];
@@ -48,24 +49,24 @@ function App() {
           {!isPlaying ? (
             <>
               <img className="bg-game" src={bgTriangle} alt="bg-triangle" />
-              <button
-                onClick={() => handleSelectedHand("paper")}
-                className="btn-round btn-paper border-gradient"
-              >
-                <img className="paper" src={paper} alt="paper-icon" />
-              </button>
-              <button
-                onClick={() => handleSelectedHand("scissors")}
-                className="btn-round btn-scissors"
-              >
-                <img className="scissors" src={scissors} alt="scissors-icon" />
-              </button>
-              <button
-                onClick={() => handleSelectedHand("rock")}
-                className="btn-round btn-rock"
-              >
-                <img className="rock" src={rock} alt="rock-icon" />
-              </button>
+              {options.map((option: string) => (
+                <GameButton
+                  name={option}
+                  onClick={() => handleSelectedHand(option)}
+                >
+                  <img
+                    className={option}
+                    src={
+                      option === "paper"
+                        ? paper
+                        : option === "rock"
+                        ? rock
+                        : scissors
+                    }
+                    alt={`${option}-icon`}
+                  />
+                </GameButton>
+              ))}
             </>
           ) : (
             <>
