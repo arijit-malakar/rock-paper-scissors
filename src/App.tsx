@@ -7,9 +7,11 @@ import scissors from "./assets/images/icon-scissors.svg";
 import Header from "./components/Header";
 import { generateHouseOutcome } from "./utils/helper";
 import GameButton from "./components/GameButton";
+import Modal from "./components/Modal";
 
 function App() {
   const options = ["rock", "paper", "scissors"];
+  const [showModal, setShowModal] = useState(false);
   const [hand, setHand] = useState("");
   const [houseHand, setHouseHand] = useState("");
   const [score, setScore] = useState(0);
@@ -133,7 +135,10 @@ function App() {
             </div>
           )}
         </div>
-        <button className="btn-outline">Rules</button>
+        <button className="btn-outline" onClick={() => setShowModal(true)}>
+          Rules
+        </button>
+        {showModal && <Modal setShowModal={setShowModal} />}
       </main>
     </div>
   );

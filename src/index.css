@@ -182,3 +182,46 @@ main {
     0 0 0 11.5rem rgba(0, 0, 0, 0.07);
   z-index: -1;
 }
+
+/* Modal */
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-box {
+  position: absolute;
+  width: fit-content;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  padding: 1.75rem;
+  border-radius: 0.5rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.modal-header h2 {
+  font-size: 1.75rem;
+  text-transform: uppercase;
+}
+
+.modal-close {
+  background: transparent;
+  border: unset;
+  height: 100%;
+  line-height: 1;
+  font-size: 2.5rem;
+  color: rgb(191, 201, 218);
+}
