@@ -13,32 +13,64 @@ function App() {
   const [hand, setHand] = useState("");
   const [houseHand, setHouseHand] = useState("");
   const [score, setScore] = useState(0);
+  const [gameResult, setGameResult] = useState("");
   const isPlaying = hand ? true : false;
 
   function handleSelectedHand(value: string) {
     const newHouseHand = generateHouseOutcome(options);
 
     let newScore = score;
-    switch (value) {
-      case "paper":
-        if (newHouseHand === "rock") newScore += 1;
-        if (newHouseHand === "scissors") newScore -= 1;
-        break;
-      case "rock":
-        if (newHouseHand === "paper") newScore -= 1;
-        if (newHouseHand === "scissors") newScore += 1;
-        break;
-      case "scissors":
-        if (newHouseHand === "paper") newScore += 1;
-        if (newHouseHand === "rock") newScore -= 1;
-        break;
-      default:
-        break;
+
+    const gameRules: { [key: string]: { win: string; lose: string } } = {
+      paper: {
+        win: "rock",
+        lose: "scissors",
+      },
+      rock: {
+        win: "scissors",
+        lose: "paper",
+      },
+      scissors: {
+        win: "paper",
+        lose: "rock",
+      },
+    };
+
+    function calculateScore(
+      userChoice: string,
+      houseChoice: string
+    ): { score: number; result: string } {
+      let score = 0;
+      let result = "";
+
+      if (userChoice === houseChoice) result = "tie";
+      else if (gameRules[userChoice].win === houseChoice) {
+        score = 1;
+        result = "win";
+      } else {
+        score = -1;
+        result = "lose";
+      }
+
+      return { score, result };
     }
+
+    const { score: scoreToUpdate, result } = calculateScore(
+      value,
+      newHouseHand
+    );
+    newScore += scoreToUpdate;
 
     setHand(value);
     setHouseHand(newHouseHand);
     setScore(newScore);
+    setGameResult(result);
+  }
+
+  function handlePlayAgain() {
+    setHand("");
+    setHouseHand("");
+    setGameResult("");
   }
 
   return (
@@ -52,6 +84,7 @@ function App() {
               {options.map((option: string) => (
                 <GameButton
                   name={option}
+                  key={option}
                   onClick={() => handleSelectedHand(option)}
                 >
                   <img
@@ -69,12 +102,35 @@ function App() {
               ))}
             </>
           ) : (
-            <>
-              <p>User selected: {hand}</p>
-              <p>The house selected: {houseHand}</p>
-              <p>Score: {score}</p>
-              <button onClick={() => setHand("")}>Play Again</button>
-            </>
+            <div className="game-status">
+              {[hand, houseHand].map((player, index) => (
+                <div className="hand-selected" key={index}>
+                  <p>{index === 0 ? "You picked" : "The house picked"}</p>
+                  <GameButton name={player} large>
+                    <img
+                      className={player}
+                      src={
+                        player === "paper"
+                          ? paper
+                          : player === "rock"
+                          ? rock
+                          : scissors
+                      }
+                      alt={`${player}-icon`}
+                    />
+                  </GameButton>
+                </div>
+              ))}
+              <div className="game-result">
+                <p className="result-text">You {gameResult}</p>
+                <button
+                  className={`btn-primary ${gameResult}`}
+                  onClick={handlePlayAgain}
+                >
+                  Play Again
+                </button>
+              </div>
+            </div>
           )}
         </div>
         <button className="btn-outline">Rules</button>
