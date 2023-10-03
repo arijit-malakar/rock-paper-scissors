@@ -108,7 +108,15 @@ function App() {
               {[hand, houseHand].map((player, index) => (
                 <div className="hand-selected" key={index}>
                   <p>{index === 0 ? "You picked" : "The house picked"}</p>
-                  <GameButton name={player} large>
+                  <GameButton
+                    name={player}
+                    large
+                    win={
+                      gameResult === "win" && index === 0
+                        ? true
+                        : gameResult === "lose" && index === 1
+                    }
+                  >
                     <img
                       className={player}
                       src={
