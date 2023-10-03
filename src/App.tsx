@@ -5,7 +5,7 @@ import paper from "./assets/images/icon-paper.svg";
 import rock from "./assets/images/icon-rock.svg";
 import scissors from "./assets/images/icon-scissors.svg";
 import Header from "./components/Header";
-import { generateHouseOutcome } from "./utils/helper";
+import { calculateScore, generateHouseOutcome } from "./utils/helper";
 import GameButton from "./components/GameButton";
 import Modal from "./components/Modal";
 
@@ -22,40 +22,6 @@ function App() {
     const newHouseHand = generateHouseOutcome(options);
 
     let newScore = score;
-
-    const gameRules: { [key: string]: { win: string; lose: string } } = {
-      paper: {
-        win: "rock",
-        lose: "scissors",
-      },
-      rock: {
-        win: "scissors",
-        lose: "paper",
-      },
-      scissors: {
-        win: "paper",
-        lose: "rock",
-      },
-    };
-
-    function calculateScore(
-      userChoice: string,
-      houseChoice: string
-    ): { score: number; result: string } {
-      let score = 0;
-      let result = "";
-
-      if (userChoice === houseChoice) result = "tie";
-      else if (gameRules[userChoice].win === houseChoice) {
-        score = 1;
-        result = "win";
-      } else {
-        score = -1;
-        result = "lose";
-      }
-
-      return { score, result };
-    }
 
     const { score: scoreToUpdate, result } = calculateScore(
       value,
